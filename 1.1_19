@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std;
+
+class circl{
+private:
+    int Radius_Z;
+    int x;
+    int y;
+public:
+    circl() {Radius_Z = 0; x = 0; y = 0;}
+
+    circl(int radius_Z, int X, int Y) {Radius_Z = radius_Z; x = X; y = Y;}
+
+    circl(int X, int Y) {x = X; y = Y; Radius_Z = 0;}
+    //circl() {int f1,f2,f3; cin >> f1 >> f2 >> f3; Radius_Z=f1; x=f2; y=f3; }
+    bool operator<(circl Sasha_from_East_side)
+    {
+        if (Sasha_from_East_side.Radius_Z < Radius_Z) 
+            return true;
+        else 
+            return false;
+    }
+
+    bool operator-()
+    {
+        if ((x+Radius_Z)(x-Radius_Z) > 0 && (y+Radius_Z)(y-Radius_Z) > 0)
+            return true;
+        else
+            return false;
+    }
+};
+
+int main() {
+
+    circl F1(0,1,0),F2(3,5,5),F3(4,2,2);
+    cout << -F1 << endl;
+    cout << -F2 << endl;
+    cout << -F3 << endl;
+    return 0;
+}
