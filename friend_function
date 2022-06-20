@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class B;
+class A
+{
+
+private:
+    float name;
+    friend float sum(A,B);
+public:
+    A(){float value; cin >> value; name=value;};
+
+};
+
+class B
+{
+
+    friend float sum(A,B);
+private:
+    float id;
+
+public:
+    B(){float value; cin >> value; id=value;}
+
+
+};
+
+float sum (A first, B second){
+    return first.name+second.id;
+}
+int main()
+{
+    B x;
+    A y;
+    cout << sum(y,x);
+}
