@@ -1,0 +1,113 @@
+#include <iostream>
+
+using namespace std;
+
+class Matrix
+{
+private:
+	//элементы матрицы 2 на 2: a = a[1][1], b = [1][2], c = [2][1], d = [2][2]
+	double a;
+	double b;
+	double c;
+	double d;
+public:
+	//конструктор без параметров: Matrix M;
+	Matrix() { cout << "\nConstructor0 is working"; a = b = c = d = 0; }
+
+	//конструктор c 1 параметром: Matrix M(m);
+	Matrix(double m)
+	{
+		cout << "\nConstructor0 is working";
+		a = m; b = c = d = 0;
+	}
+
+	//конструктор c 2 параметрами: Matrix M(m1, m2);
+	Matrix(double m1, double m2)
+	{
+		cout << "\nConstructor0 is working";
+		a = m1; b = m2; c = d = 0;
+	}
+
+	//конструктор c 3 параметрами: Matrix M(m1, m2, m3);
+	Matrix(double m1, double m2, double m3)
+	{
+		cout << "\nConstructor0 is working";
+		a = m1; b = m2; c = m3;  d = 0;
+	}
+
+	//конструктор c 4 параметрами: Matrix M(m1, m2, m3, m4);
+	Matrix(double m1, double m2, double m3, double m4)
+	{
+		cout << "\nConstructor0 is working";
+		a = m1; b = m2; c = m3;  d = m4;
+	}
+
+	//деструктор
+	~Matrix() { cout << "\nDestructor is working"; }
+
+	//геттеры и сеттеры
+	double getA() { return a; }
+	double getB() { return b; }
+	double getC() { return c; }
+	double getD() { return d; }
+
+	void setA(double value) { a = value; }
+	void setB(double value) { b = value; }
+	void setC(double value) { c = value; }
+	void setD(double value) { d = value; }
+
+	//унарная операция - вычисление определителя
+	int operator-()
+	{
+		return (a * d - c * b);
+	}
+
+	//операция сравнения < (сравнение по велечине определителя)
+	int operator<(Matrix M)
+	{
+		return ((a * d - c * b) < (M.a * M.d - M.c * M.b));
+	}
+
+	//унарная операция - определения существования обратной матрицы 
+	bool operator+()
+	{
+		return ((a * d - c * b) != 0);
+	}
+
+	//вывод
+	void print() { cout << '\n' << a << " " << b << '\n' << c << " " << d; }
+
+	friend int operator<(double m, Matrix M);
+};
+
+//дружественная операция < сравнения числа с матрицей
+int operator<(double m, Matrix M)
+{
+	return (m < (M.a* M.d - M.c * M.b));
+}
+
+int main()
+{
+	Matrix M1(2, 2, 4, 8);
+	Matrix M2(2, 2, 8);
+	Matrix M3(1, 2, 1, 2);
+	double m = 2;
+	//вывод матриц
+	M1.print();
+	M2.print();
+	//вычисление определителей
+	cout << "\ndet M1 = " << -M1 << "\ndet M2 = " << -M2 << "\ndet M3 = " << -M3;
+	//операция сравнения матриц
+	if (M1 < M2)
+		cout << "\nM1 < M2";
+	else cout << "\nM1 > M2";
+	//операция сревнения числа с матрицей 
+	if (m < M1)
+		cout << "\nm < M1";
+	else cout << "\nm > M1";
+	//определение существования обратной матрицы 
+	if (+M3)
+		cout << "\nthe inverse matrix exists";
+	else cout << "\nthe inverse matrix doesn't exists";
+	return 0;
+}
