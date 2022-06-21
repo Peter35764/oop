@@ -1,0 +1,47 @@
+// Polynomials2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+//
+
+#include <iostream>
+
+using namespace std;
+
+class Polynomial2
+{
+private:
+	//коэффициенты многочлена второй степени: coef0 + x * coef1 + x^2 * coef2
+	double coef0;
+	double coef1;
+	double coef2;
+public:
+	//конструктор без параметров: Polynomial P;
+	Polynomial2() { cout << "\nConstructor0 is working"; coef0 = coef1 = coef2 = 0; }
+
+	//деструктор
+	~Polynomial2() { cout << "\nDestructor is working"; }
+
+	//геттеры и сеттеры
+	double getCoef0() { return coef0; }
+	double getCoef1() { return coef1; }
+	double getCoef2() { return coef2; }
+
+	void setCoef0(double value) { coef0 = value; }
+	void setCoef1(double value) { coef1 = value; }
+	void setCoef2(double value) { coef2 = value; }
+
+	//вывод
+	void print() { cout << coef2 << "x^2 + " << coef1 << "x + " << coef0; }
+};
+
+
+int main()
+{
+    std::cout << "Hello World!\n";
+	Polynomial2 P1(1, 2, 3);
+	Polynomial2 P2(-1, 2, 3);
+	Polynomial2 P3 = P1 + P2;
+	Polynomial2 P4 = -P1;
+	cout << "\nP1 + P2 = ";  P3.print();
+	cout << "\n-P1 = "; P4.print();
+	char c; cin >> c; cin >> c;
+	return 0;
+}
