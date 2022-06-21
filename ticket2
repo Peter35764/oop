@@ -1,0 +1,51 @@
+#include <iostream>
+
+using namespace std;
+
+class Drob{
+    private:
+        int chisl, znam;
+    public:
+        Drob(){chisl =0; znam = 1;}
+        Drob(int chisl, int znam){this->chisl = chisl; this->znam = znam;}
+        Drob operator +(const int value){
+            Drob slog;
+            if(chisl == znam){
+                slog.chisl = this->chisl + value;
+                slog.znam = this->znam;
+                return slog;
+            }
+            else{
+                slog.chisl= this->chisl * this-> znam + value;
+                slog.znam = this->znam;
+                return slog;
+            }
+        }
+    Drob operator-(const int value){
+            Drob slog;
+            if(chisl == znam){
+                slog.chisl = this->chisl - value;
+                slog.znam = this->znam;
+                return slog;
+            }
+            else{
+                slog.chisl= value * this-> znam - this->chisl;
+                slog.znam = this->znam;
+                return slog;
+    }
+    }
+        void print(){
+            cout<<chisl<<' '<<znam<<endl;
+        }
+
+};
+
+
+
+int main(){
+    Drob g(1,2);
+    Drob h = g+3;
+    Drob j = g - 2;
+    h.print();
+    j.print();
+}
