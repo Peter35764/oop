@@ -1,0 +1,87 @@
+ #include <iostream>
+
+using namespace std;
+
+class Matrix{
+    private:
+        int matrix[2][2];
+    public:
+        Matrix() {matrix[0][0]=matrix[0][1]=matrix[1][0]=matrix[1][1]=0;}
+        Matrix(int m1, int m2, int m3, int m4) {
+            matrix[0][0] = m1;
+            matrix[0][1] = m2;
+            matrix[1][0] = m3;
+            matrix[1][1] = m4;
+        }
+        Matrix operator *(const int value){
+            Matrix matr;
+            matr.matrix[0][0] = this->matrix[0][0] * value;
+            matr.matrix[0][1] = this->matrix[0][1] * value;
+            matr.matrix[1][0] = this->matrix[1][0] * value;
+            matr.matrix[1][1] = this->matrix[1][1] * value;
+            return matr;
+        }
+        Matrix operator *(const Matrix& other){
+            Matrix vrem;
+            vrem.matrix[0][0] = this->matrix[0][0] * other.matrix[0][0] + this->matrix[0][1] * other.matrix[1][0];
+            vrem.matrix[0][1] = this->matrix[0][0] * other.matrix[0][1] + this->matrix[0][1] * other.matrix[1][1];
+            vrem.matrix[1][0] = this->matrix[1][0] * other.matrix[0][0] + this->matrix[1][1] * other.matrix[1][0];
+            vrem.matrix[1][1] = this->matrix[1][0] * other.matrix[0][1] + this->matrix[1][1] * other.matrix[1][1];
+            return vrem;
+        }
+        void print(){
+            cout<<matrix[0][0]<<' '<<matrix[0][1]<<' '<<matrix[1][0]<<' '<<matrix[1][1]<<endl;
+        }
+};
+
+
+int main(){
+    Matrix a(2,2,2,2);
+    Matrix b(3,3,3,3);
+    Matrix c = a*b;
+    Matrix d = a*3;
+    a.print();
+    b.print();
+    c.print();
+    d.print();
+} 
+
+
+//------------------------------------
+
+#include <iostream>
+
+using namespace std;
+
+class Matrix{
+private:
+    int A[2][2];
+public:
+    Matrix() {A[0][0]=0;A[0][1]=0;A[1][0]=0;A[1][1]=0;}
+
+    Matrix(int value11, int value12,  int value21, int value22) {A[0][0]=value11; A[0][1]=value12; A[1][0]=value21; A[1][1]=value22;}
+
+
+    bool operator<(Matrix X)
+    {
+        if (A[0][0]*A[1][1]<X.A[0][0]*X.A[1][1])
+            return true;
+        else
+            return false;
+    }
+
+    float operator-()
+    {   
+        return A[0][0]*A[1][1];
+    }
+};
+
+int main() {
+
+    Matrix A(2,2,2,2), T(1,3,5,7);
+    bool check=T<A;
+    cout << check << endl;
+    cout << -A << endl;
+    cout << -T << endl;
+    return 0;
+}
